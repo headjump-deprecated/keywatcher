@@ -1,0 +1,12 @@
+= keywatcher
+
+Simple monitoring for user key input and pattern (string) detection.
+
+Source[http://github.com/headjump/keywatcher]
+
+== Usage
+
+	KeyWatcher.alwaysFocus(this.stage);	// solves flash focus loosing problem :) 
+	
+	var watcher:KeyWatcher = new KeyWatcher(this.stage);
+	watcher.watch("start", myStartFunction);
