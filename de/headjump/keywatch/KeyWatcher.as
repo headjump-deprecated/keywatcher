@@ -15,6 +15,7 @@
 		private var _previous_down_time:Number;
 		private var _time_per_press:int;
 		private var _show_history:Boolean;
+		private var _active:Boolean;
 		
 		/**
 		 * @param 	st			stage (receiving key downs)
@@ -30,6 +31,7 @@
 		}
 		
 		private function initAttribs(time_per_press:int):void {
+			_active = true;
 			_time_per_press = time_per_press;
 			_watches = [];
 			_history = [];
@@ -48,7 +50,16 @@
 			_show_history = !_show_history;
 		}
 		
+		public function get active():Boolean {
+			return _active;
+		}
+		
+		public function set active(active:Boolean):void {
+			_active = active;
+		}
+		
 		private function doOnKeyDown(evt:KeyboardEvent):void {
+			if (!active) return;
 			var time:Number = new Date().time;
 			if (time - _previous_down_time > _time_per_press) {
 				_history = [];
