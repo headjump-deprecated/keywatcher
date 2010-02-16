@@ -28,6 +28,32 @@ Register sequences with a String, keyCode Array or both:
 
 Registering sequences with a String currently supports a..zA..Z0..9 and SPACE, so "hello world" will work, but "hello#^" fails.
 
+=== Ky Class knows the keys
+
+The Class Ky knows the keyCodes for the most common keys. Makes your life easier:
+
+	watcher.watch([Ky.ESC, "test"], func);	// callback after "ESC" "t" "e" "s" "t"
+	
+	// Ky knows:
+		// letters
+		Ky.A;
+		// ...
+		Ky.Z;
+		
+		// number
+		
+		Ky.N0;
+		// ...
+		Ky.N9;
+		
+		// control keys
+		Ky.SPACE
+		Ky.ESC
+		Ky.RETURN
+		Ky.BACKSPACE
+		Ky.SHIFT
+		Ky.CTRL
+
 == Loosing focus workaround
 
 It sometimes happens in Flash that the stage looses the focus for receiving KEY_DOWN Events. To prevent this, use 'alwaysFocus'

@@ -28,6 +28,12 @@ package de.headjump.keywatch {
 		public static const Y:uint = 89;
 		public static const Z:uint = 90;
 		public static const SPACE:uint = 32;
+		public static const ESC:uint = 27;
+		public static const RETURN:uint = 13;
+		public static const BACKSPACE:uint = 8;
+		public static const SHIFT:uint = 16;
+		public static const CTRL:uint = 17;
+		public static const TAB:uint = 9;
 		public static const N1:uint = 49;
 		public static const N2:uint = 50;
 		public static const N3:uint = 51;
