@@ -1,12 +1,66 @@
 = keywatcher
 
-Simple monitoring for user key input and pattern (string) detection.
+Simple monitoring for user key input and sequence detection. 
+
+* Calls a given function as soon as it detects a registered key input sequence.
+* Easy definition of keyinput to watch for with Strings ("start"), keyCodes ([65,66,67]) or both (["start", 65, 66, "end"])
 
 Source[http://github.com/headjump/keywatcher]
 
 == Usage
 
-	KeyWatcher.alwaysFocus(this.stage);	// solves flash focus loosing problem :) 
-	
+	KeyWatcher.alwaysFocus(this.stage);	// solves flash focus loosing problem :) 	
 	var watcher:KeyWatcher = new KeyWatcher(this.stage);
+
 	watcher.watch("start", myStartFunction);	// calls 'myStartFunction' when user types "start"
+
+== Registering input to watch for
+
+KeyWatcher monitors KEY_DOWN events and records them. You can register key sequences and KeyWatcher will call a callback function as soon as it detects the sequence.
+
+Register sequences with a String, keyCode Array or both:
+
+	watcher.watch("test", func);			// callback when user types "test"
+
+	watcher.watch([65, 66], func);			// callback when user types keys with keyCode 65, 66
+
+	watcher.watch(["xx", 65, 66, "xx"], func);	// callback when user types "xx", afterwards keys 65, 66, afterwards "xx"
+
+Registering sequences with a String currently supports a..ZA..Z0..1 and SPACE, so "hello world" will work, but "hello#^" fails.
+
+== Loosing focus workaround
+
+It sometimes happens in Flash that the stage looses the focus for receiving KEY_DOWN Events. To prevent this, use 'alwaysFocus'
+
+	KeyWatcher.alwaysFocus(this.stage);
+
+It attaches an invisible DisplayObject to your Stage and everytime the Focus changes, it is set back to the hidden Object. If this collides with some of your code in specific situations, you can disable 'alwaysFocus' with
+
+	KeyWatcher.killAlwaysFocus(this.stage);
+
+... and enable it again later.
+
+You can also use 'alwaysFocus' without using the rest of KeyWatcher. It reliably takes care of letting your stage receive Key Events - as long as the application itself has focus.
+
+== Activate/Deactivate
+
+Use 'active' to activate or deactivate sequence recognition
+
+	watcher.active = false;		// disables this KeyWatcher
+	watcher.active = true;		// enables
+
+This can be handy if you use different watchers for different states in your application, e.g.
+
+	function showConfig():void {
+		main_watcher.active = false;
+		config_watcher.active = true;
+	}
+
+As default a KeyWatcher is active.
+
+== Predefined watches
+
+As you instantiate a KeyWatcher, it automatically watches for
+
+* 'watching' -> traces all registered key sequences
+* 'history' -> enables/disables tracing of key sequence history (traces pressed keys and what is in the key history chain)
