@@ -3,7 +3,7 @@
 Simple monitoring for user key input and sequence detection. 
 
 * Calls a given function as soon as it detects a registered key input sequence.
-* Easy definition of keyinput to watch for with Strings ("start"), keyCodes ([65,66,67]) or both (["start", 65, 66, "end"])
+* Easy definition of keyinput to watch for with Strings ("start"), keyCodes ([Ky.ESC,Ky.RETURN]) or both (["start", Ky.RETURN, "end"])
 
 Source[http://github.com/headjump/keywatcher]
 
@@ -35,13 +35,12 @@ The Class Ky knows the keyCodes for the most common keys. Makes your life easier
 	watcher.watch([Ky.ESC, "test"], func);	// callback after "ESC" "t" "e" "s" "t"
 	
 	// Ky knows:
-		// letters
+		// Letters
 		Ky.A;
 		// ...
 		Ky.Z;
 		
-		// number
-		
+		// Numbers		
 		Ky.N0;
 		// ...
 		Ky.N9;
