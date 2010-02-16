@@ -9,4 +9,4 @@ Source[http://github.com/headjump/keywatcher]
 	KeyWatcher.alwaysFocus(this.stage);	// solves flash focus loosing problem :) 
 	
 	var watcher:KeyWatcher = new KeyWatcher(this.stage);
-	watcher.watch("start", myStartFunction);
+	watcher.watch("start", myStartFunction);	// calls 'myStartFunction' when user types "start"
