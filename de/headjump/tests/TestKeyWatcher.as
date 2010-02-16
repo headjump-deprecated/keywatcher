@@ -1,4 +1,4 @@
-﻿package de.headjump.tests {
+package de.headjump.tests {
 	import asunit.framework.TestCase;
 	import de.headjump.keywatch.Ky;
 	import flash.display.MovieClip;

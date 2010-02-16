@@ -1,4 +1,4 @@
-﻿package de.headjump.keywatch {
+package de.headjump.keywatch {
 	
 	public class Ky {
 		public static const A:uint = 65;

@@ -1,4 +1,4 @@
-﻿package de.headjump.keywatch {
+package de.headjump.keywatch {
 	import de.headjump.Helper;
 	import flash.display.Sprite;
 	import flash.display.Stage;

@@ -1,4 +1,4 @@
-﻿package de.headjump.tests {
+package de.headjump.tests {
 	import de.headjump.keywatch.KeyWatcher;
 	import flash.display.Stage;
 	
