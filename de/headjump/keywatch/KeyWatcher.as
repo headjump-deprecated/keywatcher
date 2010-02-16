@@ -36,8 +36,8 @@
 			_previous_down_time = new Date().time;
 			_show_history = false;
 			
-			this.watch([87, 65, 84, 67, 72, 73, 78, 71], traceWatching); // "watching"
-			this.watch([72, 73, 83, 84, 79, 82, 89], toggleShowHistory); // "history"	
+			this.watch("watching", traceWatching);	// trace all watches
+			this.watch("history", toggleShowHistory);  // toggle trace history on key down
 		}
 		
 		private function traceWatching():void {
@@ -103,7 +103,7 @@
 		public function toString():String {
 			var res:String = "watching for...";
 			for each(var c:Object in _watches) {
-				res = res.concat("\n  " + Ky.keysToString(c["keys"]));
+				res = res.concat("\n  " + Ky.keysToString(c["keys"]) + " // " + c["keys"]);
 			}
 			return res;
 		}
