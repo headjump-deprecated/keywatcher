@@ -24,7 +24,7 @@ Register sequences with a String, keyCode Array or both:
 
 	watcher.watch([65, 66], func);			// callback when user types keys with keyCode 65, 66
 
-	watcher.watch(["xx", 65, 67], func);	// callback when user types "xx", afterwards keys 65, 66
+	watcher.watch(["xx", 65], func);		// callback when user types "xx", afterwards keys 65
 
 Registering sequences with a String currently supports a..zA..Z0..9 and SPACE, so "hello world" will work, but "hello#^" fails.
 
