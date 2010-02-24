@@ -1,5 +1,4 @@
 package de.headjump.keywatch {
-	import de.headjump.Helper;
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.Event;
@@ -90,7 +89,7 @@ package de.headjump.keywatch {
 			}
 			if (k.length === 0) return;
 			if (alreadyWatching(k)) throw new Error("Already watching " + k);
-			_watches.push(Helper.o("keys", k, "callback", callback));
+			_watches.push({"keys": k, "callback": callback});
 		}
 		
 		private function alreadyWatching(keys:Array):Boolean {
