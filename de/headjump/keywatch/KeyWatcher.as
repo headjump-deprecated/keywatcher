@@ -7,6 +7,7 @@ package de.headjump.keywatch {
 	import flash.ui.Keyboard;
 	
 	public class KeyWatcher {
+		public static const VERSION:Number = 1.0;
 		private static var _always_focus_clip:Sprite;
 		private static var _always_focus_function:Function;
 		private var _watches:Array;
