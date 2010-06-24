@@ -161,7 +161,7 @@ package de.headjump.keywatch {
 			
 			if (_always_focus_function === null) {
 				_always_focus_function = function(evt:FocusEvent):void {
-					if (st.focus != _always_focus_clip) st.focus = _always_focus_clip;
+					if (st.focus == null) st.focus = _always_focus_clip;
 				}
 			}
 			
