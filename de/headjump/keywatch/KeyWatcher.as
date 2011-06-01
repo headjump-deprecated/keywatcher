@@ -89,7 +89,7 @@ package de.headjump.keywatch {
 		 * @param	keys		Array of keycodes || "keys-string || 
 		 * @param	callback	function called when keys were recognized
 		 */
-		public function watch(keys:*, callback:Function):void {
+		public function watch(keys:*, callback:Function, description:String = ""):void {
 			var k:Array;
 			if (keys is String) {
 				k = Ky.stringToKeys(keys as String);
@@ -100,7 +100,7 @@ package de.headjump.keywatch {
 			}
 			if (k.length === 0) return;
 			if (alreadyWatching(k)) throw new Error("Already watching " + k);
-			_watches.push({"keys": k, "callback": callback});
+			_watches.push({"keys": k, "callback": callback, "desc": description});
 		}
 		
 		private function alreadyWatching(keys:Array):Boolean {
@@ -124,7 +124,7 @@ package de.headjump.keywatch {
 		public function toString():String {
 			var res:String = "watching for...";
 			for each(var c:Object in _watches) {
-				res = res.concat("\n  " + Ky.keysToString(c["keys"]) + " // " + c["keys"]);
+				res = res.concat("\n  " + Ky.keysToString(c["keys"]) + (c["desc"] !== "" ? (" -> "+  c["desc"]) : "")+  " // " + c["keys"]);
 			}
 			return res;
 		}
