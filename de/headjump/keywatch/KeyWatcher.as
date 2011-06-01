@@ -7,7 +7,7 @@ package de.headjump.keywatch {
 	import flash.ui.Keyboard;
 	
 	public class KeyWatcher {
-		public static const VERSION:Number = 1.0;
+		public static const VERSION:Number = 1.1; // added trace output function + description per watching
 		private static var _always_focus_clip:Sprite;
 		private static var _always_focus_function:Function;
 		private var _watches:Array;
@@ -16,6 +16,7 @@ package de.headjump.keywatch {
 		private var _time_per_press:int;
 		private var _show_history:Boolean;
 		private var _active:Boolean;
+    private var _trace_out:Function;
 		
 		/**
 		 * @param 	st			stage (receiving key downs)
@@ -25,6 +26,11 @@ package de.headjump.keywatch {
 			initStage(st);
 			initAttribs(time_per_press);
 		}
+
+    public function setTraceFunction(trace_callback:Function):KeyWatcher {
+      _trace_out = trace_callback;
+      return this;
+    }
 		
 		protected function initStage(st:Stage):void {
 			st.addEventListener(KeyboardEvent.KEY_DOWN, doOnKeyDown, true);
@@ -41,9 +47,13 @@ package de.headjump.keywatch {
 			this.watch("watching", traceWatching);	// trace all watches
 			this.watch("history", toggleShowHistory);  // toggle trace history on key down
 		}
-		
+
+    private function trace_function(msg:String):void {
+      if(_trace_out !== null) _trace_out.apply(null, [msg]);
+    }
+
 		private function traceWatching():void {
-			trace(this);
+			trace_function(this.toString());
 		}
 		
 		private function toggleShowHistory():void {
@@ -71,7 +81,7 @@ package de.headjump.keywatch {
 			if (ind != -1) {
 				(_watches[ind]["callback"] as Function).call();
 			}
-			if(_show_history) trace(String.fromCharCode(evt.charCode) + " - " + _history);
+			if(_show_history) trace_function(String.fromCharCode(evt.charCode) + " - " + _history);
 		}
 		
 		/**
